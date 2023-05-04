@@ -1,7 +1,8 @@
 import { getLocalStorage, setLocalStorage, getParam } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 import productDetails from "./productDetails.mjs";
-// productDetails(productId, ".product-detail");
+
+productDetails(productId, body);
 
 const productId = getParam('product');
 console.log(await findProductById(productId));
