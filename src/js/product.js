@@ -1,7 +1,12 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, getParam } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
+import productDetails from "./productDetails.mjs";
+// productDetails(productId, ".product-detail");
 
-function addProductToCart(product) {
+const productId = getParam('product');
+console.log(await findProductById(productId));
+
+export function addProductToCart(product) {
   const cartItems = [];
   if (getLocalStorage("so-cart")) {
     getLocalStorage("so-cart").forEach((element) => {
