@@ -1,9 +1,18 @@
-productDetails(productId, selector){
-    selector.innerHTML(productDetailsTemplate(productId));
+import { findProductById } from "./productData.mjs";
+import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+
+let product = {}
+
+export async function productDetails(productId, selector){
+    product = await findProductById(productId);
+    const el = document.querySelector(selector);
+    el.insertAdjacentHTML("afterBegin", productDetailsTemplate(product));
+    document.getElementById("addToCart").addEventListener("click", addProductToCart(product));
+
 
 };
 
-productDetailsTemplate(product){
+function productDetailsTemplate(product){
   return  `
   <main class="divider">
   <section class="product-detail">
@@ -31,3 +40,11 @@ productDetailsTemplate(product){
   </section>
 </main>
 `;};
+
+
+ function addProductToCart(product) {
+  setLocalStorage('so-cart', product)
+ }
+  
+
+
