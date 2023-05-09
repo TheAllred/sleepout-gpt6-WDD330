@@ -5,9 +5,13 @@ let product = {}
 
 export async function productDetails(productId, selector){
     product = await findProductById(productId);
-    const el = document.querySelector(selector);
-    el.insertAdjacentHTML("afterBegin", productDetailsTemplate(product));
-    document.getElementById("addToCart").addEventListener("click", addProductToCart(product));
+    const element = document.querySelector(selector);
+    element.insertAdjacentHTML("afterBegin", productDetailsTemplate(product));
+    function clickHandler() {
+      addProductToCart(product)
+    }
+    document.getElementById("addProductToCart").addEventListener("click",clickHandler);
+
 
 
 };
@@ -18,7 +22,7 @@ function productDetailsTemplate(product){
   <section class="product-detail">
     <h3>${product.Brand.Name}</h3>
 
-    <h2 class="divider">${product.Name}</h2>
+    <h2 class="divider">${product.NameWithoutBrand}</h2>
 
     <img
       class="divider"
@@ -26,7 +30,7 @@ function productDetailsTemplate(product){
       alt="${product.Name}"
     />
 
-    <p class="product-card__price">${product.ListPrice}</p>
+    <p class="product-card__price">$${product.FinalPrice}</p>
 
     <p class="product__color">${product.Colors[0].ColorName}</p>
 
@@ -35,15 +39,22 @@ function productDetailsTemplate(product){
     </p>
 
     <div class="product-detail__add">
-      <button id="addToCart" data-id="344YJ">Add to Cart</button>
+      <button id="addProductToCart" data-id="${product.Id}">Add to Cart</button>
     </div>
   </section>
 </main>
 `;};
 
-
- function addProductToCart(product) {
-  setLocalStorage('so-cart', product)
+ 
+function addProductToCart(product) {
+  var cartItems = getLocalStorage('so-call')
+  console.log(cartItems)
+  if(cartItems == null) cartItems = [];
+  cartItems.push(product);
+  console.log(cartItems)
+  setLocalStorage('so-cart', cartItems);
+  console.log(getLocalStorage('so-cart'))
+  setLocalStorage("so-cart", product)
  }
   
 
