@@ -47,14 +47,25 @@ function productDetailsTemplate(product){
 
  
 function addProductToCart(product) {
-  var cartItems = getLocalStorage('so-call')
+  // var cartItems = getLocalStorage('so-call')
+  // console.log(cartItems)
+  // if(cartItems == null) cartItems = [];
+  // cartItems.push(product);
+  // console.log(cartItems)
+  // setLocalStorage('so-cart', cartItems);
+  // console.log(getLocalStorage('so-cart'))
+  // setLocalStorage("so-cart", product)
+
+  const cartItems = []
+  if (getLocalStorage("so-cart")){
+    getLocalStorage("so-cart").forEach((element) => {
+      cartItems.push(element);
+
+    });
+  }
+  cartItems.push(product)
   console.log(cartItems)
-  if(cartItems == null) cartItems = [];
-  cartItems.push(product);
-  console.log(cartItems)
-  setLocalStorage('so-cart', cartItems);
-  console.log(getLocalStorage('so-cart'))
-  setLocalStorage("so-cart", product)
+  setLocalStorage("so-cart", cartItems)
  }
   
 
