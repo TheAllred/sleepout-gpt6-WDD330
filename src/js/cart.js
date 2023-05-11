@@ -2,9 +2,16 @@ import { getLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
+  const cartCount = cartItems.length;
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  document.querySelector(".closeItem").addEventListener("click", removeProductFromCart)
+  document
+    .querySelector(".closeItem")
+    .addEventListener("click", removeProductFromCart);
+  // Display cart count in page heading.
+  document.querySelector("#cart-count").textContent = `: ${cartCount} Item${
+    cartCount > 1 ? "s" : ""
+  }`;
 }
 
 function cartItemTemplate(item) {
@@ -28,11 +35,10 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
-function removeProductFromCart(){
-
-  
-}
+function removeProductFromCart() {}
 
 renderCartContents();
 
-{/* <img src="../images/x.svg"></img> */}
+{
+  /* <img src="../images/x.svg"></img> */
+}
