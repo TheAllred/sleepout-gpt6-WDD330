@@ -1,6 +1,5 @@
 <script>
     import { getData } from "../productData.mjs";
-
     export let category;
     let tentsJson = getData(category);
 
