@@ -58,6 +58,8 @@ function addProductToCart(product) {
   console.log(cartItems)
   setLocalStorage("so-cart", cartItems)
  }
+
+
   
 
 

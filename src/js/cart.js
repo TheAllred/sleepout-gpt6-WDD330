@@ -4,6 +4,7 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  document.querySelector(".closeItem").addEventListener("click", removeProductFromCart)
 }
 
 function cartItemTemplate(item) {
@@ -20,9 +21,18 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
+  <button class="closeItem" type="&#x274C;" onClick= "removeProductFromCart(${item.id})">&#x274C;</button>
+
 </li>`;
 
   return newItem;
 }
 
+function removeProductFromCart(){
+
+  
+}
+
 renderCartContents();
+
+{/* <img src="../images/x.svg"></img> */}
