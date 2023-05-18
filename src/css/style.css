@@ -1,3 +1,4 @@
+
 :root {
   --font-body: Arial, Helvetica, sans-serif;
   --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -13,6 +14,8 @@
   --small-font: 0.8em;
   --large-font: 1.2em;
 }
+
+
 * {
   box-sizing: border-box;
 }
@@ -80,7 +83,13 @@ header {
 .highlight {
   color: var(--tertiary-color);
 }
-
+.closeItem {background-color: transparent;
+color: black;
+grid-column: 4/5;
+height: 75%;
+width: 75%;
+}
+.cartItemContainer {display: flex;}
 button {
   padding: 0.5em 2em;
   background-color: var(--secondary-color);
@@ -220,3 +229,4 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
