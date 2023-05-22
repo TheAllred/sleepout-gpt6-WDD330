@@ -9,9 +9,7 @@ new ProductList({
 
 new MainHeader({
   target: document.querySelector("#main-header"),
-  props: {
-    cartCount: 99,
-  },
 });
+
 new MainFooter({ target: document.querySelector("#main-footer") });
 

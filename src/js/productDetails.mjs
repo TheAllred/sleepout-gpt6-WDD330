@@ -66,3 +66,15 @@ export function removeProductFromCart(number) {
   setLocalStorage("so-cart", updatedCart)
   console.log("I am running")
 }
+
+
+// function matchID(item, id){
+//   return item != id
+// }
+
+// export function removeProductFromCart(id) {
+//   const cartItems = getLocalStorage("so-cart")
+//   const updatedCart = cartItems.filter(matchID(id))
+//   setLocalStorage("so-cart", updatedCart)
+//   console.log("I am running")
+// }

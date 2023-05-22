@@ -3,7 +3,6 @@
   import { removeProductFromCart } from "../productDetails.mjs"
   export const cartItems = getLocalStorage("so-cart");
   export const i = 0
-  console.log("TEST");
 </script>
 
 <ul>
@@ -16,7 +15,7 @@
       <button
         class="closeItem"
         type="&#x274C;"
-        onClick= {() => removeProductFromCart(i)}>&#x274C;</button
+        onClick= {() => {removeProductFromCart(i)}}>&#x274C;</button
       >
     </li>
     {i += 1}
