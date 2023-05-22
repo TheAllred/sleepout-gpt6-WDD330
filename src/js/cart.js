@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-=======
-// import { getLocalStorage } from "./utils.mjs";
->>>>>>> 3297b833605185159c988b6d8b92cf1f4b11b5fd
+
 
 // function renderCartContents() {
 //   const cartItems = getLocalStorage("so-cart");
@@ -39,29 +35,18 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 //   return newItem;
 // }
 
-<<<<<<< HEAD
-export function removeProductFromCart(number) {
-  const cartItems = getLocalStorage("so-cart")
-  const updatedCart = cartItems.splice(number, 1)
-  setLocalStorage("so-cart", updatedCart)
 
-}
-
-=======
-// function removeProductFromCart() {}
-
->>>>>>> 3297b833605185159c988b6d8b92cf1f4b11b5fd
 // renderCartContents();
 
 // {
 //   /* <img src="../images/x.svg"></img> */
 // }
-<<<<<<< HEAD
-=======
 
 import MainHeader from "./components/MainHeader.svelte";
 import MainFooter from "./components/MainFooter.svelte";
 import ShoppingCart from "./components/ShoppingCart.svelte";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+
 new ShoppingCart({ target: document.querySelector("#shopping-cart") });
 new MainHeader({
   target: document.querySelector("#main-header"),
@@ -70,4 +55,6 @@ new MainHeader({
   },
 });
 new MainFooter({ target: document.querySelector("#main-footer") });
->>>>>>> 3297b833605185159c988b6d8b92cf1f4b11b5fd
+
+
+

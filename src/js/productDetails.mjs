@@ -59,3 +59,10 @@ function addProductToCart(product) {
   console.log(cartItems);
   setLocalStorage("so-cart", cartItems);
 }
+
+export function removeProductFromCart(number) {
+  const cartItems = getLocalStorage("so-cart")
+  const updatedCart = cartItems.splice(number, 1)
+  setLocalStorage("so-cart", updatedCart)
+  console.log("I am running")
+}

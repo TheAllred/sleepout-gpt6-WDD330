@@ -1,7 +1,6 @@
 import ProductList from "./components/ProductList.svelte";
 import MainHeader from "./components/MainHeader.svelte";
 import MainFooter from "./components/MainFooter.svelte";
-import ShoppingCart from "./components/ShoppingCart.svelte";
 
 new ProductList({
   target: document.querySelector(".products"),
@@ -16,4 +15,3 @@ new MainHeader({
 });
 new MainFooter({ target: document.querySelector("#main-footer") });
 
-new ShoppingCart({ target: document.querySelector("#shopping-cart") });
