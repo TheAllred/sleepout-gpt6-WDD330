@@ -2,7 +2,17 @@ import { getParam } from "./utils.mjs";
 
 import { productDetails } from "./productDetails.mjs";
 
-const productId = getParam('product');
+import MainHeader from "./components/MainHeader.svelte";
+import MainFooter from "./components/MainFooter.svelte";
 
-productDetails(productId, '.product-detail');
+const productId = getParam("product");
 
+productDetails(productId, ".product-detail");
+
+new MainHeader({
+  target: document.querySelector("#main-header"),
+  props: {
+    cartCount: 99,
+  },
+});
+new MainFooter({ target: document.querySelector("#main-footer") });

@@ -31,6 +31,10 @@ export function getParam(key) {
 
 export function getCartCount() {
   const cartItems = getLocalStorage("so-cart");
-  const cartCount = cartItems.length;
-  return cartCount;
+  if (cartItems) {
+    const cartCount = cartItems.length;
+    return cartCount;
+  } else {
+    return 0;
+  }
 }
