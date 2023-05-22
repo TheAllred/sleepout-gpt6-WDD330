@@ -16,7 +16,7 @@
       <button
         class="closeItem"
         type="&#x274C;"
-        onClick={removeProductFromCart(i)}>&#x274C;</button
+        onClick= myfunction(){removeProductFromCart(i)}>&#x274C;</button
       >
     </li>
     {i += 1}
