@@ -1,18 +1,18 @@
-import { getLocalStorage } from "./utils.mjs";
+// import { getLocalStorage } from "./utils.mjs";
 
-function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart");
-  const cartCount = cartItems.length;
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  document
-    .querySelector(".closeItem")
-    .addEventListener("click", removeProductFromCart);
-  // Display cart count in page heading.
-  document.querySelector("#cart-count").textContent = `: ${cartCount} Item${
-    cartCount > 1 ? "s" : ""
-  }`;
-}
+// function renderCartContents() {
+//   const cartItems = getLocalStorage("so-cart");
+//   const cartCount = cartItems.length;
+//   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+//   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+//   document
+//     .querySelector(".closeItem")
+//     .addEventListener("click", removeProductFromCart);
+//   // Display cart count in page heading.
+//   document.querySelector("#cart-count").textContent = `: ${cartCount} Item${
+//     cartCount > 1 ? "s" : ""
+//   }`;
+// }
 
 // function cartItemTemplate(item) {
 //   const newItem = `<li class="cart-card divider">
@@ -35,10 +35,22 @@ function renderCartContents() {
 //   return newItem;
 // }
 
-function removeProductFromCart() {}
+// function removeProductFromCart() {}
 
-renderCartContents();
+// renderCartContents();
 
-{
-  /* <img src="../images/x.svg"></img> */
-}
+// {
+//   /* <img src="../images/x.svg"></img> */
+// }
+
+import MainHeader from "./components/MainHeader.svelte";
+import MainFooter from "./components/MainFooter.svelte";
+import ShoppingCart from "./components/ShoppingCart.svelte";
+new ShoppingCart({ target: document.querySelector("#shopping-cart") });
+new MainHeader({
+  target: document.querySelector("#main-header"),
+  props: {
+    cartCount: 99,
+  },
+});
+new MainFooter({ target: document.querySelector("#main-footer") });

@@ -1,23 +1,22 @@
 import { findProductById } from "./productData.mjs";
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 
-let product = {}
+let product = {};
 
-export async function productDetails(productId, selector){
-    product = await findProductById(productId);
-    const element = document.querySelector(selector);
-    element.insertAdjacentHTML("afterBegin", productDetailsTemplate(product));
-    function clickHandler() {
-      addProductToCart(product)
-    }
-    document.getElementById("addProductToCart").addEventListener("click",clickHandler);
+export async function productDetails(productId, selector) {
+  product = await findProductById(productId);
+  const element = document.querySelector(selector);
+  element.insertAdjacentHTML("afterBegin", productDetailsTemplate(product));
+  function clickHandler() {
+    addProductToCart(product);
+  }
+  document
+    .getElementById("addProductToCart")
+    .addEventListener("click", clickHandler);
+}
 
-
-
-};
-
-function productDetailsTemplate(product){
-  return  `
+function productDetailsTemplate(product) {
+  return `
   <main class="divider">
   <section class="product-detail">
     <h3>${product.Brand.Name}</h3>
@@ -43,23 +42,20 @@ function productDetailsTemplate(product){
     </div>
   </section>
 </main>
-`;};
+`;
+}
 
- 
 function addProductToCart(product) {
-  const cartItems = []
-  if (getLocalStorage("so-cart")){
+  let cartIcon = document.querySelector("#cart-icon");
+  console.log(cartIcon);
+  cartIcon.classList.toggle("spin-animation");
+  const cartItems = [];
+  if (getLocalStorage("so-cart")) {
     getLocalStorage("so-cart").forEach((element) => {
       cartItems.push(element);
-
     });
   }
-  cartItems.push(product)
-  console.log(cartItems)
-  setLocalStorage("so-cart", cartItems)
- }
-
-
-  
-
-
+  cartItems.push(product);
+  console.log(cartItems);
+  setLocalStorage("so-cart", cartItems);
+}
