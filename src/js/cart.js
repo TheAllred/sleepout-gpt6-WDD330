@@ -1,18 +1,18 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
-function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart");
-  const cartCount = cartItems.length;
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  document
-    .querySelector(".closeItem")
-    .addEventListener("click", removeProductFromCart);
-  // Display cart count in page heading.
-  document.querySelector("#cart-count").textContent = `: ${cartCount} Item${
-    cartCount > 1 ? "s" : ""
-  }`;
-}
+// function renderCartContents() {
+//   const cartItems = getLocalStorage("so-cart");
+//   const cartCount = cartItems.length;
+//   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+//   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+//   document
+//     .querySelector(".closeItem")
+//     .addEventListener("click", removeProductFromCart);
+//   // Display cart count in page heading.
+//   document.querySelector("#cart-count").textContent = `: ${cartCount} Item${
+//     cartCount > 1 ? "s" : ""
+//   }`;
+// }
 
 // function cartItemTemplate(item) {
 //   const newItem = `<li class="cart-card divider">
@@ -35,10 +35,15 @@ function renderCartContents() {
 //   return newItem;
 // }
 
-function removeProductFromCart() {}
+export function removeProductFromCart(number) {
+  const cartItems = getLocalStorage("so-cart")
+  const updatedCart = cartItems.splice(number, 1)
+  setLocalStorage("so-cart", updatedCart)
 
-renderCartContents();
-
-{
-  /* <img src="../images/x.svg"></img> */
 }
+
+// renderCartContents();
+
+// {
+//   /* <img src="../images/x.svg"></img> */
+// }
