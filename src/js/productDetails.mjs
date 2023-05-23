@@ -60,7 +60,8 @@ function addProductToCart(product) {
   setLocalStorage("so-cart", cartItems);
 }
 
-export function removeProductFromCart(number) {
+export function removeProductFromCart() {
+  event.target
   const cartItems = getLocalStorage("so-cart")
   const updatedCart = cartItems.splice(number, 1)
   setLocalStorage("so-cart", updatedCart)
