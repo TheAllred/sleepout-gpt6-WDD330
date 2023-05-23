@@ -22,9 +22,19 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-export function getParam(key){
+export function getParam(key) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get(key)
-  return product
+  const product = urlParams.get(key);
+  return product;
+}
+
+export function getCartCount() {
+  const cartItems = getLocalStorage("so-cart");
+  if (cartItems) {
+    const cartCount = cartItems.length;
+    return cartCount;
+  } else {
+    return 0;
+  }
 }
