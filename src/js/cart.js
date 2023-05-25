@@ -1,5 +1,3 @@
-
-
 // function renderCartContents() {
 //   const cartItems = getLocalStorage("so-cart");
 //   const cartCount = cartItems.length;
@@ -50,11 +48,26 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 new ShoppingCart({ target: document.querySelector("#shopping-cart") });
 new MainHeader({
   target: document.querySelector("#main-header"),
-  props: {
-    cartCount: 99,
-  },
+
 });
 new MainFooter({ target: document.querySelector("#main-footer") });
 
 
+// document.querySelector('.closeItem').addEventListener('click', removeProductFromCart())
+const cartItems = getLocalStorage("so-cart");
+
+
+
+
+
+// var buttons = document.getElementsByClassName('closeItem')
+// Array.from(buttons).forEach(function(element) {
+//   element.addEventListener("click", clickHandler(element));
+
+// });
+// Array.from(buttons).onclick(clickHandler(button))
+
+// document.querySelector('.closeItem').forEach(function () {this.addEventListener('click', removeProductFromCart())});
+
+// if I have the code in here it runs on load, refresh, 24/7
 

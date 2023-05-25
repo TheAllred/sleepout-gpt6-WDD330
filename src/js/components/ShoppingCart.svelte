@@ -1,25 +1,47 @@
 <script>
   import { getLocalStorage } from "../utils.mjs";
-  import { removeProductFromCart } from "../productDetails.mjs"
-  export const cartItems = getLocalStorage("so-cart");
-  export const i = 0
-  addEventListener('click', removeProductFromCart())
+  import { setLocalStorage } from "../utils.mjs";
+  let cartItems = getLocalStorage("so-cart");
+;
+function removeProductFromCart(event) {
+  let itemID = event.target.parentNode.getAttribute('specificItemId')
+  console.log(itemID)
+  cartItems.forEach(item => {
+    if (item.Id = itemID){
+      let itemToBeRemoved = cartItems.indexOf(item)
+      console.log(itemToBeRemoved)
+      if (itemToBeRemoved > -1) { // only splice array when item is found
+        cartItems.splice(itemToBeRemoved, 1); // 2nd parameter means remove one item only
+        cartItems = [...cartItems]
+        setLocalStorage("so-cart", cartItems)
+        return
+        }
+    }
+  });
+}
+
+export function clickHandler(event) {
+  removeProductFromCart(event);
+  console.log('running')
+}
 </script>
 
 <ul>
   {#if cartItems}
   {#each cartItems as item}
-    <li class="cart-card divider" id="cartItem{i}">
+    <li class="cart-card divider" specificItemId = {item.Id}>
       <p class="cart-card__color">${item.Colors[0].ColorName}</p>
       <p class="cart-card__quantity">qty: 1</p>
       <p class="cart-card__price">{item.FinalPrice}</p>
       <button
         class="closeItem"
-        type="&#x274C;"
+        type="button"
+        on:click={clickHandler}
       >&#x274C;</button
       >
     </li>
-    {i += 1}
   {/each}
   {/if}
 </ul>
+
+// if i have the code in here it doesn't actually run
