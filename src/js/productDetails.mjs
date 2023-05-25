@@ -60,13 +60,15 @@ function addProductToCart(product) {
   setLocalStorage("so-cart", cartItems);
 }
 
-export function removeProductFromCart() {
-  event.target
-  const cartItems = getLocalStorage("so-cart")
-  const updatedCart = cartItems.splice(number, 1)
-  setLocalStorage("so-cart", updatedCart)
-  console.log("I am running")
-}
+// document.querySelector('.closeItem').addEventListener('click', removeProductFromCart)
+
+// function removeProductFromCart() {
+//   console.log(evt.target.Id)
+//   const cartItems = getLocalStorage("so-cart")
+//   const updatedCart = cartItems.splice(number, 1)
+//   setLocalStorage("so-cart", updatedCart)
+//   console.log("I am running")
+// }
 
 
 // function matchID(item, id){
