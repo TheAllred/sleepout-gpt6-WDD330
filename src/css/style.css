@@ -112,6 +112,19 @@ button {
   font-size: var(--large-font);
   cursor: pointer;
 }
+.button{
+  padding: 0.5em 2em;
+  background-color: var(--secondary-color);
+  color: white;
+  margin: auto;
+  display: block;
+  border: 0;
+  font-size: var(--large-font);
+  cursor: pointer;
+  width: 20vw;
+  text-decoration: none;
+  text-align: center;
+}
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
