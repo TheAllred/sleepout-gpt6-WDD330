@@ -80,6 +80,18 @@ header {
   margin-top: -1.7em;
 }
 /* utility classes */
+
+#productlogos{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: auto;
+
+}
+
+#productlogos div img {
+  width: 100%;
+  height: auto;
+}
 .highlight {
   color: var(--tertiary-color);
 }
