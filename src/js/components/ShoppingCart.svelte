@@ -24,6 +24,11 @@ export function clickHandler(event) {
   removeProductFromCart(event);
   console.log('running')
 }
+
+export function changeWindow(){
+  window.open('../checkout/index.html')
+}
+
 </script>
 
 <ul>
