@@ -5,19 +5,22 @@
   import { cartTotal } from "../stores.mjs";
   let cartItems = getLocalStorage("so-cart");
 
-  cartItems.forEach((element) => {
-    cartTotal += element.FinalPrice;
-  });
 
 
-}
+
+
+  // cartItems.forEach((element) => {
+  //   cartTotal += element.FinalPrice;
+  // });
+
+
   function removeProductFromCart(event) {
     let itemID = event.target.parentNode.getAttribute("specificItemId");
     console.log(itemID);
-    cartItems.forEach((item) => {
+    cartItems.every((item) => {
       if ((item.Id = itemID)) {
         let itemToBeRemoved = cartItems.indexOf(item);
-        console.log(itemToBeRemoved);
+    
         if (itemToBeRemoved > -1) {
           // only splice array when item is found
           cartItems.splice(itemToBeRemoved, 1); // 2nd parameter means remove one item only
@@ -25,15 +28,38 @@
           setLocalStorage("so-cart", cartItems);
           return;
         }
+        return
       }
+      return
     });
     cartTotal = cartTotal;
   }
 
-  export function clickHandler(event) {
+  function removeItem(event) {
+    let itemID = event.target.parentNode.getAttribute("specificItemId");
+    console.log(itemID);
+    cartItems.every((item) => {
+      if ((item.Id = itemID)) {
+        let itemToBeRemoved = cartItems.indexOf(item);
+        console.log(itemToBeRemoved);
+        const filteredItems = cartItems.filter(item => item !== itemToBeRemoved)
+
+        cartItems = [...filteredItems]
+        setLocalStorage("so-cart", cartItems)
+        return
+      }
+      return
+    })
+
+
+}
+
+export function clickHandler(event) {
     removeProductFromCart(event);
     console.log("running");
   }
+
+
 </script>
 
 <ul>
@@ -51,7 +77,8 @@
   {/if}
 </ul>
 <h2>
-  Cart total cost: ${cartTotal.toFixed(2)}
+  Cart total cost: ${cartTotal}
+  <!-- .toFixed(2) -->
 </h2>
 <div class="cart-card divider" />
 <a class="button" href="/checkout">Check Out</a>
