@@ -13,6 +13,8 @@
   //   cartTotal += element.FinalPrice;
   // });
 
+
+}
   function removeProductFromCart(event) {
     let itemID = event.target.parentNode.getAttribute("specificItemId");
     console.log(itemID);
