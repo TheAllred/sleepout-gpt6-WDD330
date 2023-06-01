@@ -1,52 +1,57 @@
 <script>
   import { getLocalStorage } from "../utils.mjs";
   import { setLocalStorage } from "../utils.mjs";
+  import { cartCount } from "../stores.mjs";
+  import { cartTotal } from "../stores.mjs";
   let cartItems = getLocalStorage("so-cart");
-;
-function removeProductFromCart(event) {
-  let itemID = event.target.parentNode.getAttribute('specificItemId')
-  console.log(itemID)
-  cartItems.forEach(item => {
-    if (item.Id = itemID){
-      let itemToBeRemoved = cartItems.indexOf(item)
-      console.log(itemToBeRemoved)
-      if (itemToBeRemoved > -1) { // only splice array when item is found
-        cartItems.splice(itemToBeRemoved, 1); // 2nd parameter means remove one item only
-        cartItems = [...cartItems]
-        setLocalStorage("so-cart", cartItems)
-        return
-        }
-    }
+
+  cartItems.forEach((element) => {
+    cartTotal += element.FinalPrice;
   });
-}
 
-export function clickHandler(event) {
-  removeProductFromCart(event);
-  console.log('running')
-}
 
-export function changeWindow(){
-  window.open('../checkout/index.html')
 }
+  function removeProductFromCart(event) {
+    let itemID = event.target.parentNode.getAttribute("specificItemId");
+    console.log(itemID);
+    cartItems.forEach((item) => {
+      if ((item.Id = itemID)) {
+        let itemToBeRemoved = cartItems.indexOf(item);
+        console.log(itemToBeRemoved);
+        if (itemToBeRemoved > -1) {
+          // only splice array when item is found
+          cartItems.splice(itemToBeRemoved, 1); // 2nd parameter means remove one item only
+          cartItems = [...cartItems];
+          setLocalStorage("so-cart", cartItems);
+          return;
+        }
+      }
+    });
+    cartTotal = cartTotal;
+  }
 
+  export function clickHandler(event) {
+    removeProductFromCart(event);
+    console.log("running");
+  }
 </script>
 
 <ul>
   {#if cartItems}
-  {#each cartItems as item}
-    <li class="cart-card divider" specificItemId = {item.Id}>
-      <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-      <p class="cart-card__quantity">qty: 1</p>
-      <p class="cart-card__price">{item.FinalPrice}</p>
-      <button
-        class="closeItem"
-        type="button"
-        on:click={clickHandler}
-      >&#x274C;</button
-      >
-    </li>
-  {/each}
+    {#each cartItems as item}
+      <li class="cart-card divider" specificItemId={item.Id}>
+        <p class="cart-card__color">{item.Colors[0].ColorName}</p>
+        <p class="cart-card__quantity">qty: 1</p>
+        <p class="cart-card__price">${item.FinalPrice}</p>
+        <button class="closeItem" type="button" on:click={clickHandler}
+          >&#x274C;</button
+        >
+      </li>
+    {/each}
   {/if}
 </ul>
-
-// if i have the code in here it doesn't actually run
+<h2>
+  Cart total cost: ${cartTotal.toFixed(2)}
+</h2>
+<div class="cart-card divider" />
+<a class="button" href="/checkout">Check Out</a>

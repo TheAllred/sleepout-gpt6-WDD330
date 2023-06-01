@@ -1,5 +1,6 @@
 import { findProductById } from "./productData.mjs";
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
+import { cartCount } from "./stores.mjs";
 
 let product = {};
 
@@ -25,7 +26,7 @@ function productDetailsTemplate(product) {
 
     <img
       class="divider"
-      src="${product.Image}"
+      src="${product.Images.PrimaryLarge}"
       alt="${product.Name}"
     />
 
@@ -49,6 +50,7 @@ function addProductToCart(product) {
   let cartIcon = document.querySelector("#cart-icon");
   console.log(cartIcon);
   cartIcon.classList.toggle("spin-animation");
+  cartCount.update((n) => n + 1);
   const cartItems = [];
   if (getLocalStorage("so-cart")) {
     getLocalStorage("so-cart").forEach((element) => {
@@ -69,7 +71,6 @@ function addProductToCart(product) {
 //   setLocalStorage("so-cart", updatedCart)
 //   console.log("I am running")
 // }
-
 
 // function matchID(item, id){
 //   return item != id
