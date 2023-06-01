@@ -1,24 +1,26 @@
 <script>
   import { getLocalStorage } from "../utils.mjs";
 
+const init = function () {
+  currentItems = getLocalStorage(key);
+  calculateItemSummary(currentItems);
+};
+
 let key = "so-cart"
 let shipping = 10
 let currentItems = [];
 let itemTotal = 0;
 let tax = 0;
 let orderTotal = 0;
-const options = {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(payload)
-}
+// const options = {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   body: JSON.stringify(payload)
+// }
 
-const init = function () {
-  currentItems = getLocalStorage(key);
-  calculateItemSummary(currentItems);
-};
+
 
 function calculateItemSummary(currentItems){
     currentItems.forEach(element => {
@@ -31,26 +33,28 @@ function calculateItemSummary(currentItems){
     
 }
 
-function formDataToJSON(formElement) {
-  const formData = new FormData(formElement),
-    convertedJSON = {};
+// function formDataToJSON(formElement) {
+//   const formData = new FormData(formElement),
+//     convertedJSON = {};
 
-  formData.forEach(function (value, key) {
-    convertedJSON[key] = value;
-  });
 
-  return convertedJSON;
+//   formData.forEach(function (value, key) {
+//     convertedJSON[key] = value;
+//   });
 
-function packageItems(items) {
-// convert the list of products from localStorage to the simpler form required for the checkout process. Array.map would be perfect for this.
-}
+//   return convertedJSON;
+// }
 
-function handleSubmit(e) {
-  // build the data object from the calculated fields, the items in the cart, and the information entered into the form
-  // remember that the form that was submitted can be found two ways...this or e.target 
-  // call the checkout method in our externalServices module and send it our data object.
-  fetch(url, options);
-}
+// function packageItems(items) {
+// // convert the list of products from localStorage to the simpler form required for the checkout process. Array.map would be perfect for this.
+// }
+
+// function handleSubmit(e) {
+//   // build the data object from the calculated fields, the items in the cart, and the information entered into the form
+//   // remember that the form that was submitted can be found two ways...this or e.target 
+//   // call the checkout method in our externalServices module and send it our data object.
+//   fetch(url, options);
+// }
 
 init();
 
