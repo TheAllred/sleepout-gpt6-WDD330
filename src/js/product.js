@@ -7,6 +7,8 @@ import MainFooter from "./components/MainFooter.svelte";
 
 const productId = getParam("product");
 
+console.log(productId)
+
 productDetails(productId, ".product-detail");
 
 new MainHeader({
