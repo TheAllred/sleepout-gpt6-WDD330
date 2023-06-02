@@ -187,6 +187,13 @@ button {
 .product-cardPrices {
   text-align: center;
 }
+.productBottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.quickView {height: 50px;
+width: 50px;}
 
 #discountFlag{height: 50px;
 width: 50px;
@@ -213,6 +220,16 @@ margin: 10px 20px;
   padding: 1em;
   max-width: 500px;
   margin: auto;
+}
+.nodisplay{
+  background-color: white;
+  padding: 0px 0px;
+  margin: 0px 0px;
+}
+
+#quickViewCard{
+  width: 500px;
+  height: 500px;
 }
 
 .product-detail img {
