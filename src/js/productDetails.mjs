@@ -18,8 +18,15 @@ export async function productDetails(productId, selector) {
 
 function productDetailsTemplate(product) {
   return `
+
   <main class="divider">
+  
+  <div class="discountFlagWithTotal">
+  <img id="discountFlag" src="../public/images/logos/001-tag.png">
+    <p><b>You're Saving $${(product.SuggestedRetailPrice - product.FinalPrice).toFixed(2)}!</b></p>
+  </div>
   <section class="product-detail">
+  
     <h3>${product.Brand.Name}</h3>
 
     <h2 class="divider">${product.NameWithoutBrand}</h2>
@@ -30,7 +37,8 @@ function productDetailsTemplate(product) {
       alt="${product.Name}"
     />
 
-    <p class="product-card__price">$${product.FinalPrice}</p>
+    <div class="product-card__price"><p><b>Discounted Price: $${product.FinalPrice}</b></p>
+    <p><s>Retail Price: $${product.SuggestedRetailPrice}</s></p></div>
 
     <p class="product__color">${product.Colors[0].ColorName}</p>
 

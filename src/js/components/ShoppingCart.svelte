@@ -81,4 +81,4 @@ export function clickHandler(event) {
   <!-- .toFixed(2) -->
 </h2>
 <div class="cart-card divider" />
-<a class="button" href="/checkout">Check Out</a>
+<a class="button" href="/checkout/index.html">Check Out</a>
