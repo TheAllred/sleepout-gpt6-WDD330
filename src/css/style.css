@@ -180,6 +180,25 @@ button {
 .product-card p {
   margin: 0.5em 0;
 }
+.product-card img{
+  text-align: center;
+}
+
+.product-cardPrices {
+  text-align: center;
+}
+
+#discountFlag{height: 50px;
+width: 50px;
+margin: 10px 20px;
+
+}
+.discountFlagWithTotal{
+  position: absolute;
+  left: 60%;
+  display: flex;
+  font-size: 20px;
+}
 
 .card__brand {
   font-size: var(--small-font);
