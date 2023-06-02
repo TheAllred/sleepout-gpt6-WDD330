@@ -3,10 +3,16 @@
   import { getData } from "../productData.mjs";
   import { getLocalStorage } from "../utils.mjs";
   export let category;
+
+
  let products = [];
   onMount(async ()=> {
      products = await getData(category);
   })
+
+
+
+
 
 function runShowCard(event){
 if (document.querySelector('#quickViewCard') == null){
@@ -20,9 +26,7 @@ if (document.querySelector('#quickViewCard') == null){
         // console.log(cartItems[itemIndex])
         let card = `
   <div class="discountFlagWithTotal">
-  <button type="button" on:click={removeQuickView}><img id="discountFlag" src="../public/images/logos/001-tag.png"></button
-  
-    <p><b>You're Saving $${(cartItems[itemIndex].SuggestedRetailPrice - cartItems[itemIndex].FinalPrice).toFixed(2)}!</b></p>
+    <button class="closeItemQuickView" type="button" onclick="removeQuickView()">&#x274C;</button>
   </div>
   <section class="product-detail">
   
@@ -49,10 +53,10 @@ if (document.querySelector('#quickViewCard') == null){
     division.setAttribute('id', 'quickViewCard')
     division.innerHTML = card
     division.style.position = "absolute"
-    division.style.left = "33%"
-    division.style.top = "10%"
-    division.style.width = "500px"
-    division.style.height = "500px"
+    division.style.left = "10%"
+    division.style.top = "55%"
+    division.style.width = "80%"
+    division.style.height = "auto"
     division.style.background = "white"
     document.querySelector('main').prepend(division)
     }
@@ -68,10 +72,8 @@ if (document.querySelector('#quickViewCard') == null){
       if ((item.Id = newItemID)) {
         let newItemIndex = cartItems.indexOf(item);
         let newcard = `
-  <div class="discountFlagWithTotal">
-  <button class="closeItem" type="button" on:click={removeQuickView}>&#x274C;</button
-  
-    <p><b>You're Saving $${(cartItems[newItemIndex].SuggestedRetailPrice - cartItems[newItemIndex].FinalPrice).toFixed(2)}!</b></p>
+  <div class="discountFlagWithTotal">  
+    <button class="closeItemQuickView" type="button" onclick="removeQuickView()">&#x274C;</button>
   </div>
   <section class="product-detail">
   
@@ -96,6 +98,15 @@ if (document.querySelector('#quickViewCard') == null){
   </section>
             `
     document.querySelector('#quickViewCard').innerHTML = newcard
+
+    document.querySelector('#quickViewCard').setAttribute('id', 'quickViewCard')
+    document.querySelector('#quickViewCard').innerHTML = card
+    document.querySelector('#quickViewCard').style.position = "absolute"
+    document.querySelector('#quickViewCard').style.left = "10%"
+    document.querySelector('#quickViewCard').style.top = "55%"
+    document.querySelector('#quickViewCard').style.width = "80%"
+    document.querySelector('#quickViewCard').style.height = "auto"
+    document.querySelector('#quickViewCard').style.background = "white"
       }
     })
 }

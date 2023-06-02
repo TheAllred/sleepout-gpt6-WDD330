@@ -101,6 +101,15 @@ grid-column: 4/5;
 height: 75%;
 width: 75%;
 }
+.closeItemQuickView{
+  background-color: transparent;
+color: black;
+grid-column: 4/5;
+height: 100%;
+width: 100%;
+margin-left: 200px;
+font-size: 40px;
+}
 .cartItemContainer {display: flex;}
 button {
   padding: 0.5em 2em;
@@ -228,8 +237,7 @@ margin: 10px 20px;
 }
 
 #quickViewCard{
-  width: 500px;
-  height: 500px;
+  border: black 3px solid;
 }
 
 .product-detail img {
