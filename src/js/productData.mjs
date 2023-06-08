@@ -2,6 +2,7 @@ const baseURL = "http://server-nodejs.cit.byui.edu:3000/"
   // import.meta.env.VITE_SERVER_URL
 
 function convertToJson(res) {
+  console.log(res)
   let response = JSON.stringify(res)
   console.log(response)
   if (res.ok) {
