@@ -12,13 +12,19 @@ let currentItems = [];
 let itemTotal = 0;
 let tax = 0;
 let orderTotal = 0;
-// const options = {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/json'
-//   },
-//   body: JSON.stringify(payload)
-// }
+
+async function Checkout(){
+const options = {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(payload)
+
+}
+
+return await fetch(baseURL + "checkout/", options).then(convertedJSON)
+}
 
 
 
@@ -33,34 +39,77 @@ function calculateItemSummary(currentItems){
     
 }
 
-// function formDataToJSON(formElement) {
-//   const formData = new FormData(formElement),
-//     convertedJSON = {};
+function formDataToJSON(formElement) {
+  const formData = new FormData(formElement),
+    convertedJSON = {};
 
 
-//   formData.forEach(function (value, key) {
-//     convertedJSON[key] = value;
-//   });
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
 
-//   return convertedJSON;
-// }
+  return convertedJSON;
+}
 
-// function packageItems(items) {
-// // convert the list of products from localStorage to the simpler form required for the checkout process. Array.map would be perfect for this.
-// }
+function packageItems(items) {
+  const simplifiedItems = items.map((item) => {
+    return {
+      id: item.Id,
+      price: item.FinalPrice,
+      name: item.name,
+      quantity: 1,};
+    }
+  )
+  return simplifiedItems
+  }
+// convert the list of products from localStorage to the simpler form required for the checkout process. Array.map would be perfect for this.
+// let object = {
+//   items.fname,
+//   items.lname
+//   items.street
+//   items.city
+//   items.state
+//   items.zip
 
-// function handleSubmit(e) {
-//   // build the data object from the calculated fields, the items in the cart, and the information entered into the form
-//   // remember that the form that was submitted can be found two ways...this or e.target 
-//   // call the checkout method in our externalServices module and send it our data object.
-//   fetch(url, options);
-// }
+//   items.cardNumber
+//   items.expiration
+//   items.cardNumber
+//   e.target.cardNumber
+//   e.target.cardNumber
+//   e.target.cardNumber
+//   e.target.cardNumber
+//   }
+
+  // let cartItems = getLocalStorage(key)
+  // let Items = []
+
+  // Items = cartItems.map()
+
+
+
+async function handleSubmit(e) {
+  // build the data object from the calculated fields, the items in the cart, and the information entered into the form
+  // remember that the form that was submitted can be found two ways...this or e.target 
+  // call the checkout method in our externalServices module and send it our data object.
+  const json = formDataToJSON(this)
+  json.orderDate = new Date();
+  json.orderTotal = orderTotal;
+  json.tax = tax;
+  json.shipping = shipping;
+  json.items = packageItems(currentItems);
+  try {
+    const res = await Checkout(json);
+    console.log(res);
+  }catch(err){
+    console.log(err)
+  }
+}
 
 init();
 
 </script>
 
-<form action="post">
+<form name="checkout" on:submit|preventDefault={handleSubmit}>
     <fieldset class="shippingAddress">
     <legend>Shipping</legend><br>
     <label for="fname">First name:</label><br>
