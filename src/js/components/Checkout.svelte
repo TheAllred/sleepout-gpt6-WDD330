@@ -1,5 +1,6 @@
 <script>
   import { getLocalStorage } from "../utils.mjs";
+  import { Checkout } from "../productData.mjs"
 
 const init = function () {
   currentItems = getLocalStorage(key);
@@ -13,18 +14,7 @@ let itemTotal = 0;
 let tax = 0;
 let orderTotal = 0;
 
-async function Checkout(){
-const options = {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(payload)
 
-}
-
-return await fetch(baseURL + "checkout/", options).then(convertedJSON)
-}
 
 
 
@@ -46,6 +36,7 @@ function formDataToJSON(formElement) {
 
   formData.forEach(function (value, key) {
     convertedJSON[key] = value;
+    console.log(value)
   });
 
   return convertedJSON;
@@ -91,7 +82,8 @@ async function handleSubmit(e) {
   // build the data object from the calculated fields, the items in the cart, and the information entered into the form
   // remember that the form that was submitted can be found two ways...this or e.target 
   // call the checkout method in our externalServices module and send it our data object.
-  const json = formDataToJSON(this)
+  const json = formDataToJSON(e.target)
+
   json.orderDate = new Date();
   json.orderTotal = orderTotal;
   json.tax = tax;
