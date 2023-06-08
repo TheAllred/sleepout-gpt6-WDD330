@@ -10,19 +10,22 @@
      products = await getData(category);
   })
 
-
+function removeQuickView(){
+  console.log('running')
+  document.querySelector('#quickViewCard').remove()
+}
 
 
 
 function runShowCard(event){
 if (document.querySelector('#quickViewCard') == null){
   let division = document.createElement('div')
-  let cartItems = getLocalStorage("so-cart")
+  let itemList = products
   let itemID = event.target.parentNode.parentNode.parentNode.getAttribute('id')
   console.log(itemID)
-  cartItems.every((item) => {
+  itemList.every((item) => {
       if ((item.Id = itemID)) {
-        let itemIndex = cartItems.indexOf(item);
+        let itemIndex = itemList.indexOf(item);
         // console.log(cartItems[itemIndex])
         let card = `
   <div class="discountFlagWithTotal">
@@ -30,23 +33,23 @@ if (document.querySelector('#quickViewCard') == null){
   </div>
   <section class="product-detail">
   
-    <h3>${cartItems[itemIndex].Brand.Name}</h3>
+    <h3>${itemList[itemIndex].Brand.Name}</h3>
 
-    <h2 class="divider">${cartItems[itemIndex].NameWithoutBrand}</h2>
+    <h2 class="divider">${itemList[itemIndex].NameWithoutBrand}</h2>
 
     <img
       class="divider"
-      src="${cartItems[itemIndex].Images.PrimaryLarge}"
-      alt="${cartItems[itemIndex].Name}"
+      src="${itemList[itemIndex].Images.PrimaryLarge}"
+      alt="${itemList[itemIndex].Name}"
     />
 
-    <div class="product-card__price"><p><b>Discounted Price: $${cartItems[itemIndex].FinalPrice}</b></p>
-    <p><s>Retail Price: $${cartItems[itemIndex].SuggestedRetailPrice}</s></p></div>
+    <div class="product-card__price"><p><b>Discounted Price: $${itemList[itemIndex].FinalPrice}</b></p>
+    <p><s>Retail Price: $${itemList[itemIndex].SuggestedRetailPrice}</s></p></div>
 
-    <p class="product__color">${cartItems[itemIndex].Colors[0].ColorName}</p>
+    <p class="product__color">${itemList[itemIndex].Colors[0].ColorName}</p>
 
     <p class="product__description">
-      ${cartItems[itemIndex].DescriptionHtmlSimple}
+      ${itemList[itemIndex].DescriptionHtmlSimple}
     </p>
   </section>
             `
@@ -65,10 +68,10 @@ if (document.querySelector('#quickViewCard') == null){
     else{
       console.log("else statement")
   // document.querySelector('#quickViewCard').remove()
-  let cartItems = getLocalStorage("so-cart")
+  let itemList = products
   let newItemID = event.target.parentNode.parentNode.parentNode.getAttribute('id')
   console.log(newItemID)
-  cartItems.every((item) => {
+  itemList.every((item) => {
       if ((item.Id = newItemID)) {
         let newItemIndex = cartItems.indexOf(item);
         let newcard = `
@@ -77,23 +80,23 @@ if (document.querySelector('#quickViewCard') == null){
   </div>
   <section class="product-detail">
   
-    <h3>${cartItems[newItemIndex].Brand.Name}</h3>
+    <h3>${itemList[newItemIndex].Brand.Name}</h3>
 
-    <h2 class="divider">${cartItems[newItemIndex].NameWithoutBrand}</h2>
+    <h2 class="divider">${itemList[newItemIndex].NameWithoutBrand}</h2>
 
     <img
       class="divider"
-      src="${cartItems[newItemIndex].Images.PrimaryLarge}"
-      alt="${cartItems[newItemIndex].Name}"
+      src="${itemList[newItemIndex].Images.PrimaryLarge}"
+      alt="${itemList[newItemIndex].Name}"
     />
 
-    <div class="product-card__price"><p><b>Discounted Price: $${cartItems[newItemIndex].FinalPrice}</b></p>
-    <p><s>Retail Price: $${cartItems[newItemIndex].SuggestedRetailPrice}</s></p></div>
+    <div class="product-card__price"><p><b>Discounted Price: $${itemList[newItemIndex].FinalPrice}</b></p>
+    <p><s>Retail Price: $${itemList[newItemIndex].SuggestedRetailPrice}</s></p></div>
 
-    <p class="product__color">${cartItems[newItemIndex].Colors[0].ColorName}</p>
+    <p class="product__color">${itemList[newItemIndex].Colors[0].ColorName}</p>
 
     <p class="product__description">
-      ${cartItems[newItemIndex].DescriptionHtmlSimple}
+      ${itemList[newItemIndex].DescriptionHtmlSimple}
     </p>
   </section>
             `
