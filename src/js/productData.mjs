@@ -1,14 +1,13 @@
 const baseURL = "http://server-nodejs.cit.byui.edu:3000/"
   // import.meta.env.VITE_SERVER_URL
 
-function convertToJson(res) {
-  console.log(res)
-  let response = JSON.stringify(res)
+async function convertToJson(res) {
+  const data = await res.json();
   console.log(response)
   if (res.ok) {
     return res.json();
   } else {
-    throw { name: 'servicesError', message: response.body };
+    throw { name: 'servicesError', message: data };
     
   }
 }
