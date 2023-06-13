@@ -40,9 +40,11 @@ export function getCartCount() {
 }
 export function getCartTotal() {
   const cartItems = getLocalStorage("so-cart");
+  if (cartItems){
   let total = 0;
   cartItems.forEach((item) => {
     total += item.FinalPrice;
   });
   return total;
+}
 }
