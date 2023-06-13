@@ -24,7 +24,7 @@
     })
   }
 
-
+// this was my top way but index keeps returning zero
   function removeProductFromCart(event) {
     let itemID = event.target.parentNode.getAttribute("specificItemId");
     console.log(itemID);
@@ -38,11 +38,11 @@
         setLocalStorage("so-cart", cartItems);
         return
       }
-      return
     });
     // cartTotal = cartTotal;
   }
 
+// index also returns zero for this way as well.
   function removeItem(event) {
     let itemID = event.target.parentNode.getAttribute("specificItemId");
     console.log(itemID);
