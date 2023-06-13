@@ -33,14 +33,9 @@
         let itemToBeRemoved = cartItems.indexOf(item);
 
         console.log(itemToBeRemoved)
-
-    
-        if (itemToBeRemoved > -1) {
-          cartItems.splice(itemToBeRemoved, 1); // 2nd parameter means remove one item only
-          cartItems = [...cartItems];
-          setLocalStorage("so-cart", cartItems);
-          return;
-        }
+        cartItems.splice(itemToBeRemoved, 1); // 2nd parameter means remove one item only
+        cartItems = [...cartItems];
+        setLocalStorage("so-cart", cartItems);
         return
       }
       return
@@ -51,24 +46,36 @@
   function removeItem(event) {
     let itemID = event.target.parentNode.getAttribute("specificItemId");
     console.log(itemID);
-    cartItems.every((item) => {
-      if ((item.Id = itemID)) {
-        let itemToBeRemoved = cartItems.indexOf(item);
-        console.log(itemToBeRemoved);
-        const filteredItems = cartItems.filter(item => item !== itemToBeRemoved)
 
-        cartItems = [...filteredItems]
-        setLocalStorage("so-cart", cartItems)
+    for (const [index, item] of cartItems.entries()){
+      console.log(index, item)
+      if ((item.Id = itemID)) {
+        console.log(index)
+        cartItems.splice(index, 1); // 2nd parameter means remove one item only
+        cartItems = [...cartItems];
+        setLocalStorage("so-cart", cartItems);
         return
-      }
-      return
-    })
+    }
+
+  }
+    // cartItems.every((item) => {
+    //   if ((item.Id = itemID)) {
+    //     let itemToBeRemoved = cartItems.indexOf(item);
+    //     console.log(itemToBeRemoved);
+    //     const filteredItems = cartItems.filter(item => item !== itemToBeRemoved)
+
+    //     cartItems = [...filteredItems]
+    //     setLocalStorage("so-cart", cartItems)
+    //     return
+    //   }
+    //   return
+    // })
 
 
 }
 
 export function clickHandler(event) {
-    removeProductFromCart(event);
+    removeItem(event);
     console.log("running");
   }
 
@@ -77,9 +84,8 @@ export function clickHandler(event) {
 
 <ul>
   {#if cartItems}
-  {}
     {#each cartItems as item}
-    {#if !specificItemId.item.Id}
+    <!-- {#if !specificItemId.item.Id} -->
       <li class="cart-card divider" specificItemId={item.Id}>
         <p class="cart-card__color">{item.Colors[0].ColorName}</p>
         {#if item.quantity}
@@ -92,7 +98,7 @@ export function clickHandler(event) {
           >&#x274C;</button
         >
       </li>
-      {/if}
+      <!-- {/if} -->
     {/each}
   {/if}
 </ul>
