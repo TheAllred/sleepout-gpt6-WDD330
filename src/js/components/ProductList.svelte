@@ -17,15 +17,23 @@ function removeQuickView(){
 
 
 
-function runShowCard(event){
+async function runShowCard(event){
 if (document.querySelector('#quickViewCard') == null){
   let division = document.createElement('div')
   let itemList = products
+
   let itemID = event.target.parentNode.parentNode.parentNode.getAttribute('id')
-  console.log(itemID)
+
   itemList.every((item) => {
+      console.log(item)
       if ((item.Id = itemID)) {
+        console.log(item)
+        // Even though this finds correct index, url stays for the first item
+ 
         let itemIndex = itemList.indexOf(item);
+        console.log(itemList)
+        console.log(itemIndex)
+        console.log(products)
         // console.log(cartItems[itemIndex])
         let card = `
   <div class="discountFlagWithTotal">
@@ -62,8 +70,10 @@ if (document.querySelector('#quickViewCard') == null){
     division.style.height = "auto"
     division.style.background = "white"
     document.querySelector('main').prepend(division)
-    }
-    })
+    }}
+    
+    )
+    
     }
     else{
       console.log("else statement")
@@ -74,6 +84,7 @@ if (document.querySelector('#quickViewCard') == null){
   itemList.every((item) => {
       if ((item.Id = newItemID)) {
         let newItemIndex = cartItems.indexOf(item);
+        console.log(newItemIndex)
         let newcard = `
   <div class="discountFlagWithTotal">  
     <button class="closeItemQuickView" type="button" onclick="removeQuickView()">&#x274C;</button>
@@ -111,6 +122,9 @@ if (document.querySelector('#quickViewCard') == null){
     document.querySelector('#quickViewCard').style.height = "auto"
     document.querySelector('#quickViewCard').style.background = "white"
       }
+    else{
+      return
+    }
     })
 }
 }
