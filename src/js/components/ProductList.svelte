@@ -29,6 +29,7 @@ if (document.querySelector('#quickViewCard') == null){
       if ((item.Id = itemID)) {
         console.log(item)
         // Even though this finds correct index, url stays for the first item
+        // only shows first item like it is only getting the first index
  
         let itemIndex = itemList.indexOf(item);
         console.log(itemList)
