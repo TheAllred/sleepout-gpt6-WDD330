@@ -17,4 +17,7 @@ new MainHeader({
 
 new MainFooter({ target: document.querySelector("#main-footer") });
 
-
+function removeQuickView(){
+  console.log('running')
+  document.querySelector('#quickViewCard').remove()
+}

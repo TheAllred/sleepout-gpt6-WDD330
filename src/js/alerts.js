@@ -2,9 +2,9 @@ import elements from '../alerts.json'
 
 
 if (elements){
-let alertSection = document.createElement('section')
+let alertSection = document.querySelector('#alerts')
 elements.forEach((item) => {
-    console.log(item)
+    // console.log(item)
         let message = item.message
         let color = item.color
         let background = item.backgroundcolor
@@ -23,5 +23,5 @@ document.querySelector('main').prepend(alertSection)
 
 }
 
-console.log(elements)
+// console.log(elements)
 export default elements

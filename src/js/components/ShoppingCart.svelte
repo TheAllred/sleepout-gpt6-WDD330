@@ -17,13 +17,19 @@
   function removeProductFromCart(event) {
     let itemID = event.target.parentNode.getAttribute("specificItemId");
     console.log(itemID);
-    cartItems.every((item) => {
-      if ((item.Id = itemID)) {
-        let itemToBeRemoved = cartItems.indexOf(item, 0);
-        console.log(itemToBeRemoved)
-        cartItems.splice(itemToBeRemoved, 1);
-        cartItems = [...cartItems];
-        setLocalStorage("so-cart", cartItems);
+
+    cartItems.find((item) => {
+      if ((item.Id == itemID)) {
+        let itemToBeRemoved = cartItems.indexOf(item);
+    
+        if (itemToBeRemoved > -1) {
+          // only splice array when item is found
+          cartItems.splice(itemToBeRemoved, 1); // 2nd parameter means remove one item only
+          cartItems = [...cartItems];
+          setLocalStorage("so-cart", cartItems);
+          return;
+        }
+
         return
       }
       return
