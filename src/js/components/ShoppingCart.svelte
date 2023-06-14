@@ -17,6 +17,7 @@
   function removeProductFromCart(event) {
     let itemID = event.target.parentNode.getAttribute("specificItemId");
     console.log(itemID);
+
     cartItems.find((item) => {
       if ((item.Id == itemID)) {
         let itemToBeRemoved = cartItems.indexOf(item);
@@ -28,6 +29,7 @@
           setLocalStorage("so-cart", cartItems);
           return;
         }
+
         return
       }
       return
@@ -40,7 +42,7 @@
     console.log(itemID);
     cartItems.every((item) => {
       if ((item.Id = itemID)) {
-        let itemToBeRemoved = cartItems.indexOf(item);
+        let itemToBeRemoved = cartItems.indexOf(item, 0);
         console.log(itemToBeRemoved);
         const filteredItems = cartItems.filter(item => item !== itemToBeRemoved)
 
