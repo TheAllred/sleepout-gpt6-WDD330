@@ -265,6 +265,16 @@ margin: 10px 20px;
   grid-column: 3;
 }
 
+.nodisplay{
+  background-color: white;
+  padding: 0px 0px;
+  margin: 0px 0px;
+}
+
+#quickViewCard{
+  border: black 3px solid;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
