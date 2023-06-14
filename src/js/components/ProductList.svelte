@@ -145,7 +145,15 @@ function showCard(event){
     {#each products as product}
         <li class="product-card" id={product.Id}>
           <a href="../product_pages/index.html?product={product.Id}">
+            {#if screenSize > 1024}
+            <img src={product.Images.PrimaryExtraLarge} alt={product.Name} />
+            {:else if screenSize > 640}
+            <img src={product.Images.PrimaryLarge} alt={product.Name} />
+            {:else if screenSize > 320}
             <img src={product.Images.PrimaryMedium} alt={product.Name} />
+            {:else}
+            <img src={product.Images.PrimarySmall} alt={product.Name} />
+            {/if}
             <h3 class="card__brand">{product.Brand.Name}</h3>
             <h2 class="card__name">{product.Name}</h2>
           </a>
