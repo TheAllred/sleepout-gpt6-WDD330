@@ -5,6 +5,18 @@
   import { cartTotal } from "../stores.mjs";
   let cartItems = getLocalStorage("so-cart");
 
+  let uniqueItems = []
+    cartItems.forEach((item) => {
+      if (!uniqueItems.includes(item)){
+        console.log("Item not in list")
+        console.log(item)
+        uniqueItems.push(item)
+      }
+    })
+
+
+
+
 
 
 
@@ -61,15 +73,42 @@ export function clickHandler(event) {
     console.log("running");
   }
 
+function currentCartAmount(currentID) {
+  let quantity = 0
+  let i = 0
+  cartItems.forEach((item) => {
+    if (item.Id == currentID){
+      quantity += 1
+    }
+    i += 1
+  })
+  return quantity
+}
 
+function checkRendered(currentID){
+  let list = document.querySelectorAll('cart-card')
+  console.log(list)
+
+  list.forEach((item) => {
+    let id = item.getAttribute('specificItemId')
+    console.log(id)
+    if (id == currentID)
+    return true
+  })
+
+
+}
+
+let quantity = 0
 </script>
 
 <ul>
   {#if cartItems}
     {#each cartItems as item}
+    <!-- needs to check if item already is rendered -->
       <li class="cart-card divider" specificItemId={item.Id}>
         <p class="cart-card__color">{item.Colors[0].ColorName}</p>
-        <p class="cart-card__quantity">qty: 1</p>
+        <p class="cart-card__quantity">qty: {currentCartAmount(item.Id)}</p>
         <p class="cart-card__price">${item.FinalPrice}</p>
         <button class="closeItem" type="button" on:click={clickHandler}
           >&#x274C;</button
