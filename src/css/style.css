@@ -198,6 +198,14 @@ button {
   text-align: center;
 }
 
+.productBottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+
+}
+
 #discountFlag{height: 50px;
 width: 50px;
 margin: 10px 20px;
