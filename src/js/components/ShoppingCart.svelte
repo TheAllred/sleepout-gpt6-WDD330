@@ -17,8 +17,8 @@
   function removeProductFromCart(event) {
     let itemID = event.target.parentNode.getAttribute("specificItemId");
     console.log(itemID);
-    cartItems.every((item) => {
-      if ((item.Id = itemID)) {
+    cartItems.find((item) => {
+      if ((item.Id == itemID)) {
         let itemToBeRemoved = cartItems.indexOf(item);
     
         if (itemToBeRemoved > -1) {

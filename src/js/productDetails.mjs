@@ -70,6 +70,12 @@ function addProductToCart(product) {
   setLocalStorage("so-cart", cartItems);
 }
 
+
+function removeQuickView(){
+  console.log('running')
+  document.querySelector('#quickViewCard').remove()
+}
+
 // document.querySelector('.closeItem').addEventListener('click', removeProductFromCart)
 
 // function removeProductFromCart() {

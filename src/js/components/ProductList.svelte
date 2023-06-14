@@ -12,7 +12,13 @@
 
 function removeQuickView(){
   console.log('running')
+  if (document.querySelector('#quickViewCard') != null){
   document.querySelector('#quickViewCard').remove()
+}}
+
+
+function removeClickHandler(){
+  removeQuickView()
 }
 
 
@@ -24,21 +30,17 @@ if (document.querySelector('#quickViewCard') == null){
 
   let itemID = event.target.parentNode.parentNode.parentNode.getAttribute('id')
 
-  itemList.every((item) => {
-      console.log(item)
-      if ((item.Id = itemID)) {
+  itemList.find((item) => {
+      if ((item.Id == itemID)) {
         console.log(item)
         // Even though this finds correct index, url stays for the first item
         // only shows first item like it is only getting the first index
  
         let itemIndex = itemList.indexOf(item);
-        console.log(itemList)
-        console.log(itemIndex)
-        console.log(products)
         // console.log(cartItems[itemIndex])
         let card = `
   <div class="discountFlagWithTotal">
-    <button class="closeItemQuickView" type="button" onclick="removeQuickView()">&#x274C;</button>
+    <button class="closeItemQuickView" type="button" onclick="${removeClickHandler()}">&#x274C;</button>
   </div>
   <section class="product-detail">
   
@@ -71,6 +73,7 @@ if (document.querySelector('#quickViewCard') == null){
     division.style.height = "auto"
     division.style.background = "white"
     document.querySelector('main').prepend(division)
+    document.querySelector('#quickViewCard').addEventListener('click', removeClickHandler)
     }}
     
     )
@@ -82,13 +85,13 @@ if (document.querySelector('#quickViewCard') == null){
   let itemList = products
   let newItemID = event.target.parentNode.parentNode.parentNode.getAttribute('id')
   console.log(newItemID)
-  itemList.every((item) => {
-      if ((item.Id = newItemID)) {
-        let newItemIndex = cartItems.indexOf(item);
+  itemList.find((item) => {
+      if ((item.Id == newItemID)) {
+        let newItemIndex = itemList.indexOf(item);
         console.log(newItemIndex)
         let newcard = `
   <div class="discountFlagWithTotal">  
-    <button class="closeItemQuickView" type="button" onclick="removeQuickView()">&#x274C;</button>
+    <button class="closeItemQuickView" type="button" onclick="${removeClickHandler()}">&#x274C;</button>
   </div>
   <section class="product-detail">
   
@@ -113,15 +116,13 @@ if (document.querySelector('#quickViewCard') == null){
   </section>
             `
     document.querySelector('#quickViewCard').innerHTML = newcard
-
-    document.querySelector('#quickViewCard').setAttribute('id', 'quickViewCard')
-    document.querySelector('#quickViewCard').innerHTML = card
     document.querySelector('#quickViewCard').style.position = "absolute"
     document.querySelector('#quickViewCard').style.left = "10%"
     document.querySelector('#quickViewCard').style.top = "55%"
     document.querySelector('#quickViewCard').style.width = "80%"
     document.querySelector('#quickViewCard').style.height = "auto"
     document.querySelector('#quickViewCard').style.background = "white"
+    document.querySelector('#quickViewCard').addEventListener('click', removeClickHandler)
       }
     else{
       return
