@@ -275,6 +275,9 @@ margin: 10px 20px;
   border: black 3px solid;
 }
 
+.quickView {height: 50px;
+  width: 50px;}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
