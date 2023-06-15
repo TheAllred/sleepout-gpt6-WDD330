@@ -1,6 +1,9 @@
 <script>
-  import { getLocalStorage } from "../utils.mjs";
+  import { getLocalStorage, setLocalStorage } from "../utils.mjs";
 
+  import { alertMessage } from "../utils.mjs";
+
+const baseURL = import.meta.env.VITE_SERVER_URL
 const init = function () {
   currentItems = getLocalStorage(key);
   calculateItemSummary(currentItems);
@@ -13,7 +16,16 @@ let itemTotal = 0;
 let tax = 0;
 let orderTotal = 0;
 
-async function Checkout(){
+async function convertToJson(res) {
+  const data = await res.json();
+  if (res.ok) {
+    return data;
+  } else {
+    throw { name: "servicesError", message: data };
+  }
+}
+
+async function Checkout(payload){
 const options = {
   method: 'POST',
   headers: {
@@ -23,7 +35,7 @@ const options = {
 
 }
 
-return await fetch(baseURL + "checkout/", options).then(convertedJSON)
+return await fetch(baseURL + "checkout/", options).then(convertToJson)
 }
 
 
@@ -57,7 +69,8 @@ function packageItems(items) {
       id: item.Id,
       price: item.FinalPrice,
       name: item.name,
-      quantity: 1,};
+      quantity: 1,
+    };
     }
   )
   return simplifiedItems
@@ -91,18 +104,32 @@ async function handleSubmit(e) {
   // build the data object from the calculated fields, the items in the cart, and the information entered into the form
   // remember that the form that was submitted can be found two ways...this or e.target 
   // call the checkout method in our externalServices module and send it our data object.
-  const json = formDataToJSON(this)
+  const json = formDataToJSON(this);
   json.orderDate = new Date();
   json.orderTotal = orderTotal;
   json.tax = tax;
   json.shipping = shipping;
   json.items = packageItems(currentItems);
   try {
-    const res = await Checkout(json);
-    console.log(res);
-  }catch(err){
+      const res = await Checkout(json);
+      console.log(res);
+      setLocalStorage("so-cart", []);
+      location.assign("/checkout/success.html");
+    } catch (err) {
+      // get rid of any preexisting alerts.
+      removeAllAlerts();
+      for (let message in err.message) {
+        alertMessage(err.message[message]);
+      }
     console.log(err)
   }
+}
+
+
+
+function removeAllAlerts() {
+  const alerts = document.querySelectorAll(".alert");
+  alerts.forEach((alert) => alert.remove());
 }
 
 init();
