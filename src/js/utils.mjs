@@ -1,3 +1,5 @@
+import AlertMessage from "./components/AlertMessage.svelte";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -47,4 +49,16 @@ export function getCartTotal() {
   });
   return total;
 }
+}
+
+export function alertMessage(message, scroll = true, duration = 3000) {
+  const alert = new AlertMessage({
+    target: document.querySelector("body"),
+    anchor: document.querySelector("main"),
+    props: {
+      message,
+    },
+  });
+  if (scroll) window.scrollTo(0, 0);
+
 }
