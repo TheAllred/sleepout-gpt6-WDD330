@@ -3,14 +3,19 @@
   import { setLocalStorage } from "../utils.mjs";
   import { cartCount } from "../stores.mjs";
   import { cartTotal } from "../stores.mjs";
+  import { element } from "svelte/internal";
   let cartItems = getLocalStorage("so-cart");
 
+  
+
+
   let uniqueItems = []
-    cartItems.forEach((item) => {
-      if (!uniqueItems.includes(item)){
+    cartItems.forEach((element) => {
+      if (!uniqueItems.some(item => item.Id === element.Id)){
         console.log("Item not in list")
-        console.log(item)
-        uniqueItems.push(item)
+        console.log(element)
+        uniqueItems.push(element)
+        console.log(uniqueItems)
       }
     })
 
@@ -46,7 +51,7 @@
       }
       return
     });
-    cartTotal = cartTotal;
+    // cartTotal = cartTotal;
   }
 
   function removeItem(event) {
@@ -69,8 +74,9 @@
 }
 
 export function clickHandler(event) {
+  console.log("running");
     removeProductFromCart(event);
-    console.log("running");
+    
   }
 
 function currentCartAmount(currentID) {
@@ -85,26 +91,12 @@ function currentCartAmount(currentID) {
   return quantity
 }
 
-function checkRendered(currentID){
-  let list = document.querySelectorAll('cart-card')
-  console.log(list)
 
-  list.forEach((item) => {
-    let id = item.getAttribute('specificItemId')
-    console.log(id)
-    if (id == currentID)
-    return true
-  })
-
-
-}
-
-let quantity = 0
 </script>
 
 <ul>
   {#if cartItems}
-    {#each cartItems as item}
+    {#each uniqueItems as item}
     <!-- needs to check if item already is rendered -->
       <li class="cart-card divider" specificItemId={item.Id}>
         <p class="cart-card__color">{item.Colors[0].ColorName}</p>
